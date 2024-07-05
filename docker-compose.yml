@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: polls
+      POSTGRES_INITDB_ARGS: --auth=scram-sha-256
+    volumes:
+      - polls_pg_data:/var/lib/postgresql/data
+    restart: always
+
+  server:
+    build: .
+    ports:
+      - '3333:3333'
+    depends_on:
+      - db
+    restart: always
+
+volumes:
+  polls_pg_data: {}
