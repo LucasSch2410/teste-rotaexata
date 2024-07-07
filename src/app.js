@@ -1,23 +1,29 @@
-const cors = require("cors");
+require('dotenv').config({path: `${process.cwd()}/.env`})
 const express = require("express");
-const UsersController = require('./controllers/UserController');
+const cors = require("cors");
+
+const catchAsync = require('./utils/catchAsyncErrors');
+
+const AppError = require('./utils/AppError');
+
+const globalErrorHandler = require('./controllers/errorController');
+const routes = require('./routes');
 
 const app = express();
-
-const userController = new UsersController()
-
 app.use(express.json());
 app.use(cors({
     origin: ["*"],
     credentials: true
 }));
 
-// Rota pública inicial.
-app.get('/', (req, res) => {
-    res.status(200).json({ msg: "Rota inicial da API." })
-})
+app.use(routes)
 
-app.post('/user', userController.create)
+app.use("*", catchAsync((err, req, res, next) => {
+    throw new AppError(`Rota não encontrada`, 404)
+}))
 
-const PORT = 3333;
-app.listen(PORT, () => console.log('Servidor iniciado na porta http://localhost:3333.'))
+app.use(globalErrorHandler)
+
+const PORT = process.env.APP_PORT;
+
+app.listen(PORT, () => console.log(`Servidor iniciado na porta http://localhost:${PORT}.`))

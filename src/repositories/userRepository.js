@@ -1,15 +1,26 @@
 const { hash } = require("bcryptjs");
+const user = require("../db/models/user")
 
 class UserRepository {
-    async findByUsername(username, db) {
-        const userExists = await db.oneOrNone("SELECT * FROM Users WHERE username = $1", username)
+    constructor () {
+        this.user = user
+    }
+
+    async findByUsername(username) {
+        const userExists = await this.user.findOne({ where: { username }})
+
         return userExists
     }
 
-    async save(user, db) {
-        const hashedPassword = await hash(user.password, 8)
-        await db.none("INSERT INTO Users (username, password) VALUES ($1, $2)", [user.username, hashedPassword])
-        return user
+    async save(data) {
+        const hashedPassword = await hash(data.password, 8)
+
+        const newUser = await this.user.create({
+            username: data.username,
+            password: hashedPassword
+        })
+
+        return newUser
     }
 }
 

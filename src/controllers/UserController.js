@@ -1,22 +1,18 @@
-const AppError = require("../utils/AppError")
 const CreateUserService = require('../services/createUserService');
 
-class UsersController {
-    async create(request, response) {
-        const { body } = request
-
+class UserController {
+    async signUp(req, res, next) {
         try {
-            const createUserService = new CreateUserService()
-            const result = createUserService.execute(body)
-    
-            return response.json(result)
-        } catch (err) {
-            return response.json({
-                err: err.message
-            })
-        }
+            const data = req.body
 
+            const createUserService = new CreateUserService()
+            const result = await createUserService.execute(data)
+    
+            return res.status(201).json(result)
+        } catch (error) {
+            next(error, req, res, next)
+        }
     }
 }
 
-module.exports = UsersController
+module.exports = UserController

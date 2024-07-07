@@ -1,23 +1,35 @@
-const db = require("../database")
 const UserRepository = require('../repositories/userRepository');
+const AppError = require('../utils/AppError');
 
 class CreateUserService {
-    constructor() {
-        this.db = db;
-    }
 
     async execute(data) {
         const userRepository = new UserRepository()
 
-        const { username, password } = data;
+        const { username, password } = data
 
-        const checkUsersExists = userRepository.findByUsername(username, this.db)
-
-        if (checkUsersExists) {
-            throw new Error("Este usuário já está em uso.");
+        if (!username || !password) {
+            throw new AppError('Usuário e senha são necessários.', 400)
         }
 
-        return userRepository.save(data, this.db);
+        const checkUsersExists = await userRepository.findByUsername(username)
+
+        if (checkUsersExists) {
+            throw new AppError('Este usuário já existe.', 409)
+        }
+
+        const newUser = await userRepository.save(data)
+
+        if (!newUser) {
+            throw new AppError('Falha ao criar o usuário.', 500)
+        }
+
+        const result = {
+            id: newUser.id,
+            username: newUser.username
+        }
+
+        return result
     }
 }
 
