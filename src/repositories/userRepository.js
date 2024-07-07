@@ -12,6 +12,12 @@ class UserRepository {
         return userExists
     }
 
+    async findById(id) {
+        const user = await this.user.findByPk(id)
+
+        return user
+    }
+
     async save(data) {
         const hashedPassword = await hash(data.password, 8)
 

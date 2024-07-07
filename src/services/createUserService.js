@@ -24,12 +24,7 @@ class CreateUserService {
             throw new AppError('Falha ao criar o usuário.', 500)
         }
 
-        const result = {
-            id: newUser.id,
-            username: newUser.username
-        }
-
-        return result
+        return newUser
     }
 }
 

@@ -4,8 +4,9 @@ const {
   Sequelize
 } = require('sequelize');
 const sequelize = require('../../config/database');
+const address = require('./address');
 
-module.exports = sequelize.define('user', {
+const user = sequelize.define('user', {
     id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,3 +33,10 @@ module.exports = sequelize.define('user', {
     freezeTableName: true,
     modelName: 'user'
 })
+
+user.hasMany(address, { foreignKey: 'createdBy' })
+address.belongsTo(user, {
+    foreignKey: 'createdBy'
+})
+
+module.exports = user

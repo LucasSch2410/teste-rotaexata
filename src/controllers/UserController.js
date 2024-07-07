@@ -6,8 +6,16 @@ class UserController {
             const data = req.body
 
             const createUserService = new CreateUserService()
-            const result = await createUserService.execute(data)
+            const newUser = await createUserService.execute(data)
     
+            const result = {
+                result: "success",
+                data: {
+                    id: newUser.id,
+                    username: newUser.username
+                }
+            }
+
             return res.status(201).json(result)
         } catch (error) {
             next(error, req, res, next)

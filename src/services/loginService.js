@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
-const UserRepository = require('../repositories/userRepository');
 const { compare } = require("bcryptjs");
+
+const UserRepository = require('../repositories/userRepository');
 const AppError = require('../utils/AppError');
 
 const generateToken = (payload) => {
@@ -9,7 +10,7 @@ const generateToken = (payload) => {
     })
 }
 
-class AuthService {
+class LoginService {
     async execute(data) {
         const { username, password } = data
 
@@ -28,11 +29,9 @@ class AuthService {
             id: user.id
         })
 
-        const result = { token }
-
-        return result
+        return token
 
     }
 }
 
-module.exports = AuthService;
+module.exports = LoginService;
