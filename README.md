@@ -13,6 +13,11 @@ Algumas variáveis que definem como o projeto se comporta estão definidos no ar
 
 ---
 
+# Logs de alterações
+O banco de dados armazena o log de alterações em alterações ou ao deleter endereços. As colunas são: id, userId, action, entity, entityId, before, after, createdAt, updatedAt.
+
+---
+
 # Inicialização da aplicação
 ```bash
 # Vá para o diretório do projeto
