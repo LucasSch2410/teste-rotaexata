@@ -2,12 +2,12 @@ require('dotenv').config({path: `.env`})
 const express = require("express");
 const cors = require("cors");
 
-const catchAsync = require('./utils/catchAsyncErrors');
+const catchAsync = require('./utils/catchAsyncErrors')
 
-const AppError = require('./utils/appError');
+const AppError = require('./utils/appError')
 
-const globalErrorHandler = require('./controllers/errorController');
-const routes = require('./routes');
+const globalErrorHandler = require('./controllers/errorController')
+const routes = require('./routes')
 
 const app = express();
 app.use(express.json());
