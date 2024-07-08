@@ -19,10 +19,10 @@ Algumas variáveis que definem como o projeto se comporta estão definidos no ar
 $ cd teste-rotaexata
 
 # Faça a build da imagem
-$ docker compose build
+$ docker-compose build
 
 # Inicie os containers do banco de dados e da aplicação
-$ docker compose up -d
+$ docker-compose up -d
 
 # Faça a migração das tabelas
 $ docker exec rotaexata-app npx sequelize-cli db:migrate
