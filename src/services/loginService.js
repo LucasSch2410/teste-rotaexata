@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { compare } = require("bcryptjs");
 
 const UserRepository = require('../repositories/userRepository');
-const AppError = require('../utils/AppError');
+const AppError = require('../utils/appError');
 
 const generateToken = (payload) => {
     return jwt.sign(payload, process.env.JWT_SECRET_KEY, {

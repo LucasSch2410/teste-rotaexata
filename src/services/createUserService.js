@@ -1,5 +1,5 @@
 const UserRepository = require('../repositories/userRepository');
-const AppError = require('../utils/AppError');
+const AppError = require('../utils/appError');
 
 class CreateUserService {
 

@@ -1,5 +1,5 @@
 const UserRepository = require('../repositories/userRepository');
-const AppError = require('../utils/AppError');
+const AppError = require('../utils/appError');
 
 const jwt = require('jsonwebtoken');
 
@@ -13,7 +13,7 @@ class AuthenticationService {
         const freshUser = await userRepository.findById(tokenDetail.id)
 
         if (!freshUser) {
-            throw new AppError('Este usuário não existe.', 400)
+            throw new AppError('Falha na autorização.', 400)
         }
 
         return freshUser

@@ -1,5 +1,5 @@
 const AddressRepository = require('../repositories/addressRepository');
-const AppError = require('../utils/AppError');
+const AppError = require('../utils/appError');
 
 class GetAllAddresses {
 

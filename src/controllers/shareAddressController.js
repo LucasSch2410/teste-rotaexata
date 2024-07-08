@@ -1,13 +1,13 @@
 const ShareAddressService = require('../services/shareAddressService');
 const AddressRepository = require('../repositories/addressRepository');
-const AppError = require('../utils/AppError');
+const AppError = require('../utils/appError');
 
 class ShareAddressController {
     async share(req, res, next) {
         try {
             const userId = req.user.id
             const id = req.params.id
-            const { expirationTime } = req.body
+            const { expirationTime = "1D" } = req.body
 
             const shareAddressService = new ShareAddressService()
             const addressRepository = new AddressRepository()
@@ -26,7 +26,7 @@ class ShareAddressController {
             const shareUrl = await shareAddressService.generateShareUrl(userId, id, expirationTime)
 
             const result = {
-                result: "success",
+                status: "success",
                 url: shareUrl
             };
 
@@ -43,7 +43,7 @@ class ShareAddressController {
             const addressDetails = await shareAddressService.validateAndRetrieveAddress(token);
 
             const result = {
-                result: "success",
+                status: "success",
                 data: addressDetails
             };
 

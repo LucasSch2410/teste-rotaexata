@@ -1,5 +1,5 @@
 const address = require("../db/models/address")
-const AppError = require("../utils/AppError")
+const AppError = require("../utils/appError")
 const { Op } = require('sequelize');
 
 class AddressRepository {

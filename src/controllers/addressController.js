@@ -18,7 +18,7 @@ class AddressController {
             const address = await createAddressService.execute(data)
 
             const result = {
-                result: "success",
+                status: "success",
                 data: address
             }
     
@@ -42,7 +42,7 @@ class AddressController {
             const addresses = await getAllAddresses.execute(data)
 
             const result = {
-                result: "success",
+                status: "success",
                 data: addresses
             }
 
@@ -69,7 +69,7 @@ class AddressController {
             const updatedAddress = await updateAddressService.execute(data);
 
             const result = {
-                result: "success",
+                status: "success",
                 data: updatedAddress
             };
 
@@ -90,7 +90,7 @@ class AddressController {
             const deleteAddressService = new DeleteAddressService()
             const deletedAddress = await deleteAddressService.execute(data)
 
-            const result = { result: "success" }
+            const result = { status: "success" }
 
             return res.status(200).json(result)
 

@@ -9,7 +9,7 @@ class UserController {
             const newUser = await createUserService.execute(data)
     
             const result = {
-                result: "success",
+                status: "success",
                 data: {
                     id: newUser.id,
                     username: newUser.username

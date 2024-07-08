@@ -1,10 +1,10 @@
-require('dotenv').config({path: `${process.cwd()}/.env`})
+require('dotenv').config({path: `.env`})
 const express = require("express");
 const cors = require("cors");
 
 const catchAsync = require('./utils/catchAsyncErrors');
 
-const AppError = require('./utils/AppError');
+const AppError = require('./utils/appError');
 
 const globalErrorHandler = require('./controllers/errorController');
 const routes = require('./routes');
@@ -24,6 +24,6 @@ app.use("*", catchAsync((err, req, res, next) => {
 
 app.use(globalErrorHandler)
 
-const PORT = process.env.APP_PORT;
+const PORT = process.env.APP_PORT || 4000;
 
 app.listen(PORT, () => console.log(`Servidor iniciado na porta http://localhost:${PORT}.`))

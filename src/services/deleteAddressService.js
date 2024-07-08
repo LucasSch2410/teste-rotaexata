@@ -1,6 +1,6 @@
 const ChangeLogRepository = require('../repositories/changeLogRepository');
 const AddressRepository = require('../repositories/addressRepository');
-const AppError = require('../utils/AppError');
+const AppError = require('../utils/appError');
 
 class CreateAddressService {
 

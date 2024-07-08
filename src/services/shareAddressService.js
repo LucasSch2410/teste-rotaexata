@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const AddressRepository = require('../repositories/addressRepository');
-const AppError = require('../utils/AppError');
+const AppError = require('../utils/appError');
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
