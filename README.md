@@ -259,7 +259,7 @@ Delete algum endereço salvo.
 Compartilhe o endereço com alguém por um tempo determinado.
 
 ### Requisição
-- **Método:** DELETE
+- **Método:** POST
 - **URL:** `/addresses/:id/share`
 - **Headers:**
     ```http
