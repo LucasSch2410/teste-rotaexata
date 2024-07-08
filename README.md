@@ -24,11 +24,8 @@ $ docker compose build
 # Inicie os containers do banco de dados e da aplicação
 $ docker compose up -d
 
-# Crie o banco de dados se ainda não existir
-$ docker exec crud-nodejs-server-1 npx sequelize-cli db:create
-
 # Faça a migração das tabelas
-$ docker exec crud-nodejs-server-1 npx sequelize-cli db:migrate
+$ docker exec rotaexata-app npx sequelize-cli db:migrate
 
 # Você poderá acessar as rotas a partir da seguinte url:
 http://localhost:3333
@@ -37,6 +34,8 @@ http://localhost:3333
 ---
 
 # Documentação da API
+
+
 
 ## Endpoint: /user
 Crie um usuário.
@@ -68,6 +67,8 @@ Crie um usuário.
 }
 ```
 
+
+
 ## Endpoint: /login
 Faça o login com um usuário e senha.
 
@@ -96,6 +97,7 @@ Faça o login com um usuário e senha.
     }
 }
 ```
+
 
 
 ## Endpoint: /addresses
@@ -142,6 +144,8 @@ Registre um endereço.
 }
 ```
 
+
+
 ## Endpoint: /addresses
 Retorne todos os seus endereços salvos ou com base em uma palavra-chave.
 
@@ -178,6 +182,8 @@ Retorne todos os seus endereços salvos ou com base em uma palavra-chave.
     }
 }
 ```
+
+
 
 ## Endpoint: /addresses/:id
 Altere alguma informação em um endereço salvo.
@@ -223,6 +229,8 @@ Altere alguma informação em um endereço salvo.
 }
 ```
 
+
+
 ## Endpoint: /addresses/:id
 Delete algum endereço salvo.
 
@@ -244,13 +252,6 @@ Delete algum endereço salvo.
 ```json
 { "status": "success" || "fail" || "error" }
 ```
-
-
-
-
-
-
-
 
 
 
